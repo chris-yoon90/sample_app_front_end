@@ -21,12 +21,27 @@ angular
   			controller: 'MainCtrl',
   			title: 'About'
   		})
+      .when('/help', {
+        templateUrl: 'views/static_pages/help.html',
+        controller: 'MainCtrl',
+        title: 'Help'
+      })
+      .when('/contact', {
+        templateUrl: 'views/static_pages/contact.html',
+        controller: 'MainCtrl',
+        title: 'Contact'
+      })
+      .when('/signup', {
+        templateUrl: 'views/users/new.html',
+        controller: 'UserCtrl',
+        title: 'Sign up'
+      })
   		.otherwise( { redirectTo: '/' });
 
-  	$locationProvider.html5Mode(true);
+  	$locationProvider.html5Mode(true).hashPrefix('!');
   }])
   .run(['$rootScope', function($rootScope) {
-  	$rootScope.$on('$routeChangeSuccess', function(event, currentRoute, previousRoute) {
-  		$rootScope.titleExtension = currentRoute.title ? "| " + currentRoute.title : "";
+  	$rootScope.$on('$routeChangeSuccess', function(event, currentRoute) {
+  		$rootScope.titleExtension = currentRoute.title ? '| ' + currentRoute.title : '';
   	});
   }]);
